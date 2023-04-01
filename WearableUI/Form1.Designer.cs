@@ -48,26 +48,27 @@
             // btnVibrate
             // 
             this.btnVibrate.BackColor = System.Drawing.Color.Red;
-            this.btnVibrate.Location = new System.Drawing.Point(275, 202);
+            this.btnVibrate.Location = new System.Drawing.Point(50, 210);
             this.btnVibrate.Name = "btnVibrate";
-            this.btnVibrate.Size = new System.Drawing.Size(25, 23);
+            this.btnVibrate.Size = new System.Drawing.Size(206, 65);
             this.btnVibrate.TabIndex = 1;
             this.btnVibrate.UseVisualStyleBackColor = false;
             // 
             // labelVibrate
             // 
             this.labelVibrate.AutoSize = true;
-            this.labelVibrate.Location = new System.Drawing.Point(209, 205);
+            this.labelVibrate.Location = new System.Drawing.Point(131, 278);
             this.labelVibrate.Name = "labelVibrate";
-            this.labelVibrate.Size = new System.Drawing.Size(60, 16);
+            this.labelVibrate.Size = new System.Drawing.Size(50, 16);
             this.labelVibrate.TabIndex = 3;
-            this.labelVibrate.Text = "Vibrating";
+            this.labelVibrate.Text = "Vibrate";
+            this.labelVibrate.Click += new System.EventHandler(this.labelVibrate_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 237);
+            this.ClientSize = new System.Drawing.Size(311, 316);
             this.Controls.Add(this.labelVibrate);
             this.Controls.Add(this.btnVibrate);
             this.Controls.Add(this.shakeButton);

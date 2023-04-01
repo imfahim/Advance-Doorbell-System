@@ -57,5 +57,10 @@ namespace WearableUI
                 Thread.Sleep(2000);
             }
         }
+
+        private void labelVibrate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

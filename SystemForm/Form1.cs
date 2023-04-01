@@ -14,6 +14,8 @@ namespace SystemForm
         private string codeText = string.Empty;
         private string newCode = string.Empty;
         public bool Resetting = false;
+        public int WrongCounter = 0;
+        public DateTime? KeypadLocked = null;
         public Form1()
         {
 
@@ -145,6 +147,17 @@ namespace SystemForm
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
+            if(WrongCounter == 4)
+            {
+                TimeSpan timeDifference = DateTime.UtcNow - KeypadLocked.Value;
+                if(timeDifference.TotalMinutes < 3)
+                {
+                    MessageBox.Show("Keypad Locked");
+                    return;
+                }
+            }
+            WrongCounter = 0;
+            KeypadLocked = null;
             if (Resetting && !string.IsNullOrEmpty(newCode))
             {
                 if(newCode == codeText)
@@ -193,6 +206,15 @@ namespace SystemForm
                 MessageBox.Show("Wrong Code");
                 codeText = "";
                 codeBox.Text = codeText;
+                if (!Resetting)
+                {
+                    WrongCounter++;
+                    if(WrongCounter == 4)
+                    {
+                        KeypadLocked = DateTime.UtcNow;
+                        buttonBell.Click += new EventHandler(buttonBell_Click);
+                    }
+                }
             }
         }
 
