@@ -12,6 +12,8 @@ namespace SystemForm
         public BluetoothDeviceInfo[] AllDevices;
         public SerialPort port = new SerialPort(ArdunioConstants.ArduinoBoardPortName, ArdunioConstants.ArduinoBoardBaudRate);
         private string codeText = string.Empty;
+        private string newCode = string.Empty;
+        public bool Resetting = false;
         public Form1()
         {
 
@@ -143,7 +145,43 @@ namespace SystemForm
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if(codeText == ArdunioConstants.Passcode)
+            if (Resetting && !string.IsNullOrEmpty(newCode))
+            {
+                if(newCode == codeText)
+                {
+                    codeText = "";
+                    codeBox.Text = "";
+                    MessageBox.Show("New Code Set");
+                    codeBox.Text = codeText;
+                    ArdunioConstants.Passcode = newCode;
+                    newCode = "";
+                    Resetting = false;
+                }
+                else
+                {
+                    codeText = "";
+                    codeBox.Text = "";
+                    MessageBox.Show("No matched Re-type");
+                    codeBox.Text = codeText;
+                }                
+            }
+            else if (Resetting && string.IsNullOrEmpty(newCode)) 
+            {
+                newCode = codeText;
+                codeText = "";
+                MessageBox.Show("Re-Type New Code");
+                codeBox.Text = "";
+                codeBox.Text = codeText;
+            }
+            else if(codeText == ArdunioConstants.DefaultPasscode)
+            {
+                codeText = "";
+                codeBox.Text = "";
+                MessageBox.Show("Type New Code");
+                codeBox.Text = codeText;
+                Resetting = true;
+            }
+            else if (codeText == ArdunioConstants.Passcode && !Resetting)
             {
                 MessageBox.Show("Door Opened");
                 codeText = "";

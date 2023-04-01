@@ -6,6 +6,7 @@
         public const int ArduinoBoardBaudRate = 9600;
         public const string BluetoothDevice = "WearableDevice";
         public static string Passcode = "1234";
+        public static string DefaultPasscode = "0000";
     }
 
     public static class ArdunioCommands
